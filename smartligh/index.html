@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Smart Street Light Monitoring System</title>
+  <style>
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: white;
+      color: black;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    header {
+      height: 65px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px max(5%, env(safe-area-inset-left));
+      padding-top: calc(20px + env(safe-area-inset-top));
+      background-color: white;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: blue;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    .get-started-btn {
+      background-color: rgb(18, 18, 219);
+      color: white;
+      padding: 10px 20px;
+      min-width: 120px;
+      min-height: 44px;
+      border-radius: 20px;
+      border: 1px solid black;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero {
+      height: 70vh;
+      min-height: 500px;
+      background-color: rgb(50, 50, 195);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      padding-top: calc(10vh + env(safe-area-inset-top));
+    }
+
+    .hero h2 {
+      font-size: clamp(24px, 5vw, 36px);
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+
+    .hero p {
+      font-size: clamp(14px, 2.5vw, 18px);
+      margin-bottom: 30px;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero .get-started-btn {
+      background-color: rgb(32, 6, 160);
+      color: rgb(255, 255, 255);
+      font-size: 16px;
+      padding: 12px 30px;
+      font-weight: bold;
+    }
+
+    h3.section-title {
+      text-align: center;
+      margin: 60px 0 30px 0;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: bold;
+      color: #333;
+    }
+
+    .section-title1 {
+      background-color: antiquewhite;
+      text-align: center;
+      padding: 30px 0;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .how-it-works{
+      background-color: antiquewhite;
+    }
+
+    .features,
+    .how-it-works,
+    .testimonials {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 50vh;
+      color: black;
+      text-align: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .feature-card,
+    .step-card,
+    .testimonial-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 350px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover,
+    .step-card:hover,
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-card h4,
+    .step-card h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: rgb(30, 30, 150);
+    }
+
+    .feature-card p,
+    .step-card p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .testimonial-card {
+      font-style: italic;
+      color: #444;
+    }
+
+    .testimonial-card strong {
+      display: block;
+      margin-top: 15px;
+      font-style: normal;
+      color: #222;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 60px max(5%, env(safe-area-inset-left));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .footer-section a,
+    .footer-section p {
+      color: #ddd;
+      font-size: 16px;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .footer-social i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Toggle Styles */
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* iPhone 12 Pro Max and similar large phones */
+    @media (max-width: 428px) {
+      .hero {
+        padding-top: 15vh;
+        height: 60vh;
+        min-height: 400px;
+      }
+      .main-nav {
+        display: none;
+        flex-direction: column;
+      }
+      .feature-card, .step-card, .testimonial-card {
+        max-width: 90%;
+      }
+    }
+
+    /* Pixel 7 and similar sized phones */
+    @media (max-width: 412px) {
+      .hero h2 {
+        font-size: 24px;
+      }
+      .hero p {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      header {
+        padding: 15px max(5%, env(safe-area-inset-left));
+      }
+
+      .hero {
+        padding-top: 15vh;
+      }
+    }
+
+   
+    @media (max-width: 500px) {
+      body {
+        font-size: 14px;
+      }
+      .feature-card h4, .step-card h4 {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-height: 800px) {
+      .hero {
+        height: auto;
+        min-height: 60vh;
+        padding: 15vh 20px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><span>SMART</span> LIGHT</div>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">
+      <i class="fa fa-bars"></i>
+    </label>
+
+    <nav id="main-nav">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#" class="get-started-btn">Get Started</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Smart Street Light Monitoring System</h2>
+    <p>Optimize your street lighting with IoT technology for energy efficiency and proactive maintenance.</p>
+    <a href="#" class="get-started-btn">Get Started</a>
+  </div>
+
+  <h3 class="section-title" id="features">Features</h3>
+  <div class="features">
+    <div class="feature-card">
+      <h4>Energy Efficiency</h4>
+      <p>Reduce energy consumption by adapting light intensity based on real-time conditions.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Real-Time Monitoring</h4>
+      <p>Monitor the operational status of individual lights effectively.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Proactive Maintenance</h4>
+      <p>Receive alerts for maintenance needs to ensure optimal performance.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title1" id="how-it-works">How It Works</h3>
+  <div class="how-it-works">
+    <div class="step-card">
+      <h4>Step 1: Data Collection</h4>
+      <p>Ambient light and motion sensors collect data in real-time.</p>
+    </div>
+    <div class="step-card">
+      <h4>Step 2: Data Transmission</h4>
+      <p>Data is transmitted to the cloud for analysis.</p>
+    </div>
+    <div class="step-card">
+      <h4>Step 3: Dynamic Adjustment</h4>
+      <p>Light intensity is adjusted based on analyzed data.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title" id="testimonials">What Our Users Say</h3>
+  <div class="testimonials">
+    <div class="testimonial-card">
+      <p>"This system has transformed our street lighting and reduced our energy costs significantly!"</p>
+      <strong>- John Doe</strong>
+    </div>
+    <div class="testimonial-card">
+      <p>"Proactive maintenance alerts have made our city safer and more efficient."</p>
+      <strong>- Jane Smith</strong>
+    </div>
+    <div class="testimonial-card">
+      <p>"Real-time monitoring gives us peace of mind that our lighting is always optimal."</p>
+      <strong>- Alex Johnson</strong>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-section">
+      <h4>Links</h4>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#">Get Started</a>
+    </div>
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>Kigali, Kicukiro, Gahanga, KK15 Rd</p>
+      <p>0788355738 / 0788825490</p>
+      <p>smartstreetlighting@gmail.com</p>
+    </div>
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="#"><i class="fa-brands fa-facebook"></i>Facebook</a>
+        <a href="#"><i class="fa-brands fa-instagram"></i>Instagram</a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i>Twitter</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
