@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Styled Form</title>
+  <link rel="stylesheet" href="formvalidation.css">
+  <style>
+   
+  </style>
+</head>
+<body>
+  <form id="form" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" />
+    <div id="nameError" class="error"></div>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" />
+    <div id="emailError" class="error"></div>
+       
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" />
+
+    <label for="passwordcf">Confirm Password</label>
+    <input type="password" name="passwordcf" id="passwordcf" />
+    <div id="passwordError" class="error"></div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="formvalidation.js"></script>
+</body>
+</html>
