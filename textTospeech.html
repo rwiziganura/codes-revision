@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inputField" placeholder="Type something...">
+    <button id="submitButton">Submit</button>
+    <script>
+        const input=document.querySelector("#inputField");
+        const button=document.querySelector("#submitButton");
+        const textTospeech=()=>{
+            let text=input.value;
+            const voice=new SpeechSynthesisUtterance(text);
+            voice.lang="sv-SE";
+            window.speechSynthesis.speak(voice);
+
+        }
+        button.addEventListener("click",textTospeech);
+    </script>
+</body>
+</html>
